@@ -1,6 +1,6 @@
 dotnet tool install --global dotnet-ef
 
-dotnet ef DBcontext scaffold "server = (local); database = UniversityDb; uid=sa;pwd=123;Trust Server Certificate=True;Encrypt=False" Microsoft.EntityFrameworkCore.SqlServer -o Models 
+dotnet ef DBcontext scaffold "server = (local); database = (Tên database); uid=sa; pwd=123; Trust Server Certificate=True; Encrypt=False" Microsoft.EntityFrameworkCore.SqlServer -o Models 
 
 C:\Windows\SysWOW64\SQLServerManager15.msc 
 -----------------------------------------------------
@@ -8,7 +8,7 @@ dotnet ef dbcontext scaffold "Data Source=(localdb);database = DBTest;Trusted_Co
 --------------------textbox
 {
   "ConnectionStrings": {
-    "DefaultConnection": "server = (local); database = UniversityDB; uid=sa;pwd=123456;TrustServerCertificate=True;Encrypt=False"
+    "DefaultConnection": "server = (local); database = (Tên database); uid=sa; pwd=123; TrustServerCertificate=True; Encrypt=False"
   }
 }
 2--------------------------------------------------------------------------------------
