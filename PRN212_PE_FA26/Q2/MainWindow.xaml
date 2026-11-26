@@ -1,0 +1,80 @@
+﻿<Window x:Class="Q2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Q2"
+        mc:Ignorable="d"
+        Title="Product Management - functional areas" Height="560" Width="900" Loaded="Window_Loaded">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="FILTER AREA" Grid.Row="0" Padding="5">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Category"/>
+                <ComboBox x:Name="cboFilterCategory" Width="150" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+                <Label Content="Price from" Margin="15,0,0,0"/>
+                <TextBox x:Name="txtPriceFrom" Width="110" VerticalContentAlignment="Center"/>
+                <Label Content="Price to" Margin="15,0,0,0"/>
+                <TextBox x:Name="txtPriceTo" Width="110" VerticalContentAlignment="Center"/>
+                <Button x:Name="btnSearch" Content="Search" Width="90" Margin="40,0,0,0" Click="btnSearch_Click"/>
+                <Button x:Name="btnReset" Content="Reset" Width="90" Margin="15,0,0,0" Click="btnReset_Click"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="PRODUCT LIST" Grid.Row="1" Padding="5" Margin="0,10,0,0">
+            <DataGrid x:Name="dgProducts" AutoGenerateColumns="False" IsReadOnly="True"
+                      SelectionMode="Single" CanUserAddRows="False"
+                      SelectionChanged="dgProducts_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="50"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Lookup.Name}" Width="150"/>
+                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat=F2}" Width="110"/>
+                    <DataGridTextColumn Header="WorkDate" Binding="{Binding WorkDate, StringFormat=yyyy-MM-dd}" Width="120"/>
+                    <DataGridCheckBoxColumn Header="IsActive" Binding="{Binding IsActive}" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <GroupBox Header="PRODUCT EDITOR" Grid.Row="2" Padding="5" Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="45"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Id" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="txtId" Grid.Row="0" Grid.Column="1" IsReadOnly="True" Height="24" VerticalContentAlignment="Center"/>
+                <Label Content="Name" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                <TextBox x:Name="txtName" Grid.Row="0" Grid.Column="3" Height="24" VerticalContentAlignment="Center"/>
+                <Label Content="Category" Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                <ComboBox x:Name="cboCategory" Grid.Row="0" Grid.Column="5" Height="24" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+
+                <Label Content="Amount" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="txtAmount" Grid.Row="1" Grid.Column="1" Height="24" VerticalContentAlignment="Center"/>
+                <Label Content="WorkDate" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                <TextBox x:Name="dpWorkDate" Grid.Row="1" Grid.Column="3" Height="24" VerticalContentAlignment="Center"/>
+                <CheckBox x:Name="chkIsActive" Content="IsActive" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center"/>
+
+                <StackPanel Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button x:Name="btnAdd" Content="Add" Width="90" Height="26" Click="btnAdd_Click"/>
+                    <Button x:Name="btnUpdate" Content="Update" Width="90" Height="26" Margin="15,0,0,0" Click="btnUpdate_Click"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
